@@ -1,9 +1,32 @@
-# linked_lists
-Models a collection of data as a series of "nodes" which link to one another in a chain.
+---
+layout: page
+title: Jungle Beat
+---
 
-https://github.com/turingschool/curriculum/blob/master/source/projects/linked_lists.markdown
+https://github.com/turingschool/curriculum/blob/master/source/projects/jungle_beat.markdown
 
-# Linked Lists
+## Before You Begin
+
+We're going to do some silly things with sound and linked lists. Let's make a drum machine that's backed by a linked list.
+
+### Making Sound
+
+Go into your Terminal and try this:
+
+```
+$ say -r 500 -v Boing "ding, dah, oom, oom, ding, oom, oom, oom, ding, dah, oom, oom, ding, dah, oom, oom, ding, dah, oom, oom "
+```
+
+Yeah. That's what we're looking for. Now try it from Ruby:
+
+```
+$ irb
+> `say -r 500 -v Boing "ding, dah, oom, oom"`
+```
+
+Note that the backticks allow you to run terminal commands from within Ruby.
+
+### Linked Lists
 
 Linked Lists are one of the most fundamental Computer Science data structures. A Linked List models a collection of data as a series of "nodes" which link to one another in a chain.
 
@@ -20,28 +43,78 @@ Using sweet ASCII art, it might look like this:
 ```
 List -- (head) --> ["hello" | -]-- (link) --> ["world" | -]-- (link) --> ["!" | ]
 ```
-The three nodes here hold the data "hello", "world", and "!". The first two node have links which point to other nodes. The last node, holding the data "!", has no reference in the link spot. This signifies that it is the end of the list.
+The three nodes here hold the data "hello", "world", and "!". The first two nodes have links which point to other nodes. The last node, holding the data "!", has no reference in the link spot. This signifies that it is the end of the list.
 
-## Base Expectation
+## Learning Goals / Areas of Focus
 
-Write an implementation of a linked list which can __at least__ do all of the following:
+* Practice breaking a program into logical components
+* Distinguishing between classes and instances of those classes
+* Understanding how linked lists work to store and find data
+* Testing components in isolation and in combination
+
+## Base Expectations
+
+### A Static Interaction Model
+
+Our tool is going to be used in two ways. The first, from the command line, is just for playing a script of beats:
+
+```
+$ ruby ./lib/jungle_beats.rb beats.txt
+Played 8 sounds from `beats.txt`
+```
+
+Where the `beats.txt` looks like this:
+
+```
+ding ding dah dah ding ding dah dah
+```
+
+Which will play the eight sounds.
+
+### A Dynamic Interaction Model
+
+Then we'll want to stretch the Linked List underpinnings from an IRB session:
+
+```irb
+> jb = JungleBeat.new("deep dep dep deep")
+> jb.play
+=> 4 # also plays the sounds
+> jb.append("deep bop bop deep")
+=> 8
+> jb.all
+=> "deep dep dep deep deep bop bop deep"
+> jb.prepend("tee tee tee tee")
+=> 4 # number of beats inserted
+> jb.all
+=> "tee tee tee tee deep dep dep deep deep bop bop deep"
+> jb.include?("dep")
+=> true
+> jb.pop(4)
+=> 4
+> jb.all
+=> "tee tee tee tee deep dep dep deep deep bop bop deep"
+> jb.count
+=> 12
+> jb.insert(4, "boop bop bop boop")
+=> "tee tee tee tee boop bop bop boop deep dep dep deep deep bop bop deep"
+> jb.find(8, 2)
+=> "deep dep"
+```
+
+### Internal Structure
+
+You must use a Linked List to store your beats. Each node should contain only a single "word"/beat. You'll want to implement at least each of the following features for your list:
 
 * `append` an element to the end of the list
 * `prepend` an element at the beginning of the list
-* `insert` an element at an arbitrary position in the list
+* `insert` one or more elements at an arbitrary position in the list
 * `includes?` gives back `true` or `false` whether the supplied value is in the list
-* `pop` an element from the end of the list
+* `pop` or more elements from the end of the list
 * `count` the number of elements in the list
-* return the `head` value at the beginning of the list
-* return the `tail` value at the end of the list
-* `find_by_index` find the value at a numeric position
-* `find_by_value` finds the position of the first occurrence of a value
-* `remove_by_index` removes the value at the specified index
-* `remove_by_value` removes the first occurrence of the specified value
 
 ## Extensions
 
-* Find the distance between two nodes
+*Forthcoming*
 
 ## Tips
 
@@ -56,12 +129,12 @@ Write an implementation of a linked list which can __at least__ do all of the fo
 
 ## Constraints
 
-* Make sure that your code is well tested for both *expected cases* and *edge cases*.
+* Make sure that your code is well tested for both *expected cases* and *edge cases*. Try popping more elements than there are in the list. Try seeing if an empty list includes anything. Try inserting elements at a position beyond the length of the list. That kind of thing.
 * Avoid using other ruby collections (Arrays, Hashes, etc) in your implementation.
 
 ## Resources
 
-Need some help? You check out some of the following resources:
+Need some help on Linked Lists? You can check out some of the following resources:
 
 * https://www.youtube.com/watch?v=oiW79L8VYXk
 * http://www.eternallyconfuzzled.com/tuts/datastructures/jsw_tut_linklist.aspx
@@ -106,4 +179,3 @@ The project will be assessed with the following rubric:
 * 3: Application makes effective use of loop/recursion techniques
 * 2: Application has issues with loop/recursion techniques or mixes them inappropriately
 * 1: Application struggles to loop/recurse at all
-
