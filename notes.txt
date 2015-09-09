@@ -25,3 +25,22 @@ linked-list ruby: http://matt.weppler.me/2013/08/14/implementing-a-linked-list-i
 article: http://www.sitepoint.com/rubys-missing-data-structure/
 eno: http://commandercoriander.net/blog/2012/12/23/reversing-a-linked-list-in-ruby/
 khakimov: http://khakimov.com/blog/2012/05/11/back-to-school-linked-list-with-ruby/
+
+----HOW TO----
+
+a = Node.new('a')
+b = Node.new('b')
+a.next = b
+
+a.next.next
+b.next
+
+a.next.value
+b.value
+
+string = 'string'
+first_node = Node.new(string)
+first_node.next
+next_node = Node.new('next')
+first_node.next = next_node
+first_node.next

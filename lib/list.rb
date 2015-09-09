@@ -3,26 +3,42 @@ require 'pry'
 
 class List # ruby ./lib/jungle_beats.rb beats.txt
 
-  attr_accessor :input_music, :text, :head_node, :total_beats
+  attr_accessor :head, :list, :input_music, :text, :count
 
   def initialize(input_music)
-    @input_music = input_music
-    @text = File.open(input_music).read.split(" ")
-    @head_node = head_node # "state" modeled with instance variables
-    @total_beats = total_beats # DRY sounds_played?
+    @input_music = File.open(input_music).read.split(" ")
+    @head = nil
+    @count = 0
+    binding.pry
   end
 
-  def manipulate_or_query_the_beats(beat)
-    # @node = new_node.next
-    # input_music.map do |beat|
+  def convert_input_music_to_list
+
+    input_music.map do |beat|
+
+    end
   end
 
-  def append_beat_to_end_of_list
-    # append an element to the end of the list
+  def append_beat(node)
+    count += 1
+    if @head == nil
+      @head = node
+      tail = node
+    else
+      node.next = head
+      @head = node
+    end
   end
 
-  def prepend_beat_to_beginning_of_list
-    # prepend an element at the beginning of the list
+  def prepend_beat(node)
+    count += 1
+    if head == nil
+      head = node
+      tail = node
+    else
+      tail.next = node
+      tail = node
+    end
   end
 
   def insert_beat_or_beats_in_any_position_of_list
@@ -45,8 +61,7 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
 
   def play_the_beats
     `say -r 500 -v Boing "ding, dah, oom, oom"` # where ding string is manipulated text
-    sounds_played = text.count
-    puts "Played #{sounds_played} sounds from `#{input_music}`"
+    puts "Played #{count} sounds from `#{input_music}`"
   end
 
 end
