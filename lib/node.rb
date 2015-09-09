@@ -6,19 +6,20 @@ class Node
   attr_accessor :value, :next
 
   def initialize(node)
-    Node = Struct.new(:value, :next)
-    list = Node.new("dooop", nil)
+    # Node = Struct.new(:value, :next)
+    # list = Node.new("dooop", nil)
   end
 
   def convert_input_music_to_linked_list(value, node)
-    return Node.new(value, node)
+    # return Node.new(value, node)
   end
 
   def recursive_print(list) # recursively print nodes until end of list
-    puts list.value
-    recursive_print(list.next) unless list.next == nil
+    # puts list.value
+    # recursive_print(list.next) unless list.next == nil
   end
 
+  def test_array
     # takes an array of strings and converts each string to nodes
     # avoid using array in implementation.
     # can it be passed in directly and text (from list) removed above???

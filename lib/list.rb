@@ -12,7 +12,8 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
     @total_beats = total_beats # DRY sounds_played?
   end
 
-  def manipulate_or_query_the_beats
+  def manipulate_or_query_the_beats(beat)
+    # @node = new_node.next
     # input_music.map do |beat|
   end
 
