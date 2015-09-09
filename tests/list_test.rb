@@ -6,8 +6,19 @@ require '../lib/list'
 class ListTest < Minitest::Test
 
   def test_it_exists
-    assert ListTest.new("# Test Markdown\n")
+    assert Node.new("bee")
   end
+
+  def test_append_beats_to_end_of_list
+    assert Node.new("bop")
+    assert Node.new("dee")
+    assert Node.new("dum")
+  end
+
+  def test_prepend_beat_to_beginning_of_list
+    assert Node.new("boop")
+  end
+
 
   def test_if_empty_list_includes_anything
     skip
@@ -21,14 +32,6 @@ class ListTest < Minitest::Test
   end
 
   def test_head_node_exists
-    skip
-  end
-
-  def test_append_beat_to_end_of_list
-    skip
-  end
-
-  def test_prepend_beat_to_beginning_of_list
     skip
   end
 
