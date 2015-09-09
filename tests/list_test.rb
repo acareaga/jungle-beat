@@ -6,16 +6,23 @@ require '../lib/list'
 class ListTest < Minitest::Test
 
   def test_it_exists
-    assert Node.new("bee")
+    assert_equal Node.new("bee"), data.data
+  end
+
+  def test_append_beat_to_empty_list
+    skip
+    assert Node.new("data"), data.data
   end
 
   def test_append_beats_to_end_of_list
-    assert Node.new("bop")
-    assert Node.new("dee")
-    assert Node.new("dum")
+    skip
+    list = List.new("one")
+    list.append_beat("two")
+    assert_equal "two", list.head.next
   end
 
   def test_prepend_beat_to_beginning_of_list
+    skip
     assert Node.new("boop")
   end
 

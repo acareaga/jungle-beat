@@ -6,29 +6,17 @@ require '../lib/node'
 class NodeTest < Minitest::Test
 
   def test_it_exists
-    assert NodeTest.new("# Test Markdown\n")
+    assert Node.new("dee")
   end
 
-  def test_node_when_nil
-    skip
-    text = Header.new("# My Life in Desserts\n")
-    assert_equal "<h1>My Life in Desserts</h1>\n", text.html_version
+  def test_data_returns_input
+    beat = Node.new("beep")
+    assert_equal "beep", beat.data
   end
 
-  def test_single_node_data
-    skip
-  end
-
-  def test_position_of_head_node
-    skip
-  end
-
-  def test_next_node_move
-    skip
-  end
-
-  def test_multiple_node_data
-    skip
+  def test_next_returns_nil
+    beat = Node.new("bop")
+    assert_equal nil, beat.next
   end
 
 end
