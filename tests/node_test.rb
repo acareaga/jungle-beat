@@ -9,9 +9,9 @@ class NodeTest < Minitest::Test
     assert Node.new("dee")
   end
 
-  def test_data_returns_input
+  def test_value_returns_input
     beat = Node.new("beep")
-    assert_equal "beep", beat.data
+    assert_equal "beep", beat.value
   end
 
   def test_next_returns_nil
