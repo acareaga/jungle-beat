@@ -1,0 +1,27 @@
+Due Friday 9/11
+
+---REQUIREMENTS---
+
+Make sure that your code is well tested for both expected cases and edge cases.
+  - Try popping more elements than there are in the list.
+  - Try seeing if an empty list includes anything.
+  - Try inserting elements at a position beyond the length of the list. That kind of thing.
+Avoid using other ruby collections (Arrays, Hashes, etc) in your implementation.
+
+---FLOW---
+
+Terminal cmd -
+Beats.txt file opened
+Convert first element into a head node
+Convert next element to node, point head node at new element
+Convert next element to node, point previous node to new element
+Repeat until nil is reached
+
+---RESOURCES---
+outline: https://github.com/turingschool/curriculum/blob/master/source/projects/jungle_beat.markdown
+lecture: https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html
+linked-list ruby: http://matt.weppler.me/2013/08/14/implementing-a-linked-list-in-ruby.html
+
+article: http://www.sitepoint.com/rubys-missing-data-structure/
+eno: http://commandercoriander.net/blog/2012/12/23/reversing-a-linked-list-in-ruby/
+khakimov: http://khakimov.com/blog/2012/05/11/back-to-school-linked-list-with-ruby/
