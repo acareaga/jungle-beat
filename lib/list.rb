@@ -41,7 +41,7 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
       node.next = Node.new(beat)
       node = node.next
     end
-    return data.size
+    data.size
   end
 
   def prepend_beat(*data)
@@ -54,7 +54,7 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
         @head = Node.new(beat)
       end
     end
-    return data.size
+    data.size
   end
 
   def remove_last_beat
@@ -90,6 +90,7 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
       previous.next = new_node
       new_node.next = node
     end
+    all
   end
 
   def include?(data)
@@ -129,9 +130,14 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
     count
   end
 
-  def play_beats
-    `say -r 500 -v Boing "#{@input_music}"` # where ding string is manipulated text
+  def play_beats # Need to fix input_music file name
+    `say -r 500 -v Boing "#{@input_music}"`
     puts "Played #{@input_music.size} sounds from `#{@input_music}`"
+  end
+
+  def play
+    `say -r 500 -v Boing "#{@output_music}"`
+    output_music.size # Need to add variable and carry through methods
   end
 
 end
