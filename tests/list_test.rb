@@ -1,19 +1,66 @@
 require 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require '../lib/list'
+require_relative '../lib/list'
 
 class ListTest < Minitest::Test
 
   def test_it_exists
-    beat = Node.new("bop")
-    list = List.new
-    assert_equal "bop", list.append_beat(beat)
+    data = List.new
+    assert_equal List, data.class
+  end
+
+  def test_we_can_input_nil
+    data = List.new
+    assert data
+  end
+
+  def test_list_has_a_head_node
+    data = List.new
+    assert_equal Node, data.head.class
+  end
+
+  def test_convert_music_set_head_value
+    data = List.new
+    data.convert_input_music_to_linked_list(["bee"])
+    assert_equal "bee", data.head.data
+  end
+
+  def test_convert_music_set_head_and_second_node
+    data = List.new
+    data.convert_input_music_to_linked_list(["bee", "bop"])
+    assert_equal Node, data.head.next.class
+  end
+
+  def test_convert_music_set_head_and_second_node_data
+    data = List.new
+    data.convert_input_music_to_linked_list(["bee", "bop"])
+    assert_equal "bop", data.head.next.data
+  end
+
+  def test_convert_music_set_head_and_third_node_data
+    data = List.new
+    data.convert_input_music_to_linked_list(["bee", "bop",'thum'])
+    assert_equal "thum", data.head.next.next.data
+  end
+
+  def test_convert_music_set_head_and_fourth_node_data
+    data = List.new
+    data.convert_input_music_to_linked_list(["bee", "bop",'thum','bah'])
+    assert_equal "bah", data.head.next.next.next.data
   end
 
   def test_append_beat_to_empty_list
     skip
     assert Node.new("data"), node.data
+  end
+
+  def test_append_beat_to_one_node_list
+    data = List.new
+    data.convert_input_music_to_linked_list(['bee'])
+    data.append_beat('bah')
+    assert "bah", data.head.next.data
+
   end
 
   def test_append_beats_to_end_of_list

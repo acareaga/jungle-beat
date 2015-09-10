@@ -11,7 +11,7 @@ class NodeTest < Minitest::Test
 
   def test_value_returns_input
     beat = Node.new("beep")
-    assert_equal "beep", beat.value
+    assert_equal "beep", beat.data
   end
 
   def test_next_returns_nil

@@ -1,12 +1,11 @@
-require_relative 'list'
 require 'pry'
 
 class Node
 
-  attr_accessor :value, :next
+  attr_accessor :data, :next
 
-  def initialize(value)
-    @value = value
+  def initialize(data = nil)
+    @data = data
     @next = nil
   end
 
