@@ -20,6 +20,13 @@ class ListTest < Minitest::Test
     assert_equal Node, data.head.class
   end
 
+  def test_list_has_a_tail
+    list = List.new
+    list.convert_input_music_to_linked_list(['one'])
+    list.append_beat("two")
+    assert_equal "two", list.tail.data
+  end
+
   def test_convert_music_set_head_value
     data = List.new
     data.convert_input_music_to_linked_list(["bee"])
@@ -100,18 +107,11 @@ class ListTest < Minitest::Test
     assert_equal "five", list.head.data
   end
 
-  def test_tail_on_list
-    list = List.new
-    list.convert_input_music_to_linked_list(['one'])
-    list.append_beat("two")
-    assert_equal "two", list.tail.data
-  end
-
   def test_remove_one_beat_from_end_of_list
     list = List.new
     list.convert_input_music_to_linked_list(["one", "two", "three"])
-    list.pop_beat(1)
-    assert_equal "three", list.head.next.next.data
+    popped_beats = list.pop_beat(1)
+    assert_equal "three", popped_beats
   end
 
   def test_remove_multiple_beats_from_end_of_list
@@ -123,7 +123,9 @@ class ListTest < Minitest::Test
   end
 
   def test_insert_beat_in_arbitrary_position_of_list
-    skip
+    list = List.new
+    list.convert_input_music_to_linked_list(["one", "two", "three"])
+    list.insert_beat_in_list(2, "five, six, seven")
   end
 
   def test_insert_multiple_beats_in_arbitrary_position_of_list
