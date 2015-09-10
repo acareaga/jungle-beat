@@ -126,6 +126,7 @@ class ListTest < Minitest::Test
     list = List.new
     list.convert_input_music_to_linked_list(["one", "two", "three"])
     list.insert_beat_in_list(2, "five, six, seven")
+    assert_equal
   end
 
   def test_insert_multiple_beats_in_arbitrary_position_of_list
