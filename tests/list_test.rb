@@ -10,7 +10,7 @@ class ListTest < Minitest::Test
     assert_equal List, data.class
   end
 
-  def test_we_can_input_nil
+  def test_you_can_input_nil
     data = List.new
     assert data
   end
@@ -50,45 +50,66 @@ class ListTest < Minitest::Test
     assert_equal "bah", data.head.next.next.next.data
   end
 
+  ##### FIX HERE ####
   def test_append_beat_to_empty_list
-    skip
-    assert Node.new("data"), node.data
+    skip # checkout the while/end condition with node.next != nil
+    list = List.new
+    list.append_beat('bah')
+    assert_equal "bah", list.head.data
   end
 
   def test_append_beat_to_one_node_list
-    data = List.new
-    data.convert_input_music_to_linked_list(['bee'])
-    data.append_beat('bah')
-    assert "bah", data.head.next.data
-
+    list = List.new
+    list.convert_input_music_to_linked_list(['bee'])
+    list.append_beat('bah')
+    assert_equal "bah", list.head.next.data
   end
 
-  def test_append_beats_to_end_of_list
-    skip
-    list = List.new("one")
-    list.append_beat("two")
-    assert_equal "two", list.head.next
+  def test_append_two_beats_to_end_of_list
+    list = List.new
+    list.convert_input_music_to_linked_list(['one'])
+    list.append_beat("two", "three")
+    assert_equal "three", list.head.next.next.data
   end
 
-  def test_prepend_beat_to_beginning_of_list
-    skip
-    assert Node.new("boop")
+  def test_append_five_beats_to_end_of_list
+    list = List.new
+    list.convert_input_music_to_linked_list(['one'])
+    list.append_beat("two", "three", "four", "five")
+    assert_equal "five", list.head.next.next.next.next.data
   end
 
-
-  def test_if_empty_list_includes_anything
-    skip
-    # Try seeing if an empty list includes anything
+  def test_prepend_beat_to_one_node_list
+    list = List.new
+    list.convert_input_music_to_linked_list(['bee'])
+    list.prepend_beat('bah')
+    assert_equal "bah", list.head.data
   end
 
-  def test_input_music_converts_to_linked_list
-    skip
-    input_music = List.new("")
-    assert_equal "<h1>My Life in Desserts</h1>\n", input_music.list_version
+  def test_prepend_two_beats_to_beginning_of_list
+    list = List.new
+    list.convert_input_music_to_linked_list(['one'])
+    list.prepend_beat("two", "three")
+    assert_equal "three", list.head.data
   end
 
-  def test_head_node_exists
+  def test_prepend_five_beats_to_end_of_list
+    list = List.new
+    list.convert_input_music_to_linked_list(['one'])
+    list.prepend_beat("two", "three", "four", "five")
+    assert_equal "five", list.head.data
+  end
+
+  def test_remove_beat_from_end_of_list
     skip
+  end
+
+  def test_remove_multiple_beats_from_end_of_list
+    skip
+  end
+
+  def test_removing_more_beats_than_exist_in_list
+    skip # Try popping more elements than exist in list
   end
 
   def test_insert_beat_in_arbitrary_position_of_list
@@ -106,18 +127,6 @@ class ListTest < Minitest::Test
 
   def test_check_if_list_includes_beat
     skip
-  end
-
-  def test_remove_beat_from_end_of_list
-    skip
-  end
-
-  def test_remove_multiple_beats_from_end_of_list
-    skip
-  end
-
-  def test_removing_more_beats_than_exist_in_list
-    skip # Try popping more elements than exist in list
   end
 
   def test_count_number_of_beats_in_list

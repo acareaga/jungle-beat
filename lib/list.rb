@@ -8,12 +8,10 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
   def initialize(input_music=nil)
     @head = Node.new
     @tail = nil
-    @count = 0
     if input_music == nil
     else
       @input_music = File.open(input_music).read.split(" ")
     end
-    @beats = ""
   end
 
   def convert_input_music_to_linked_list(input_music=@input_music)
@@ -27,27 +25,26 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
      @head
   end
 
-  def append_beat(data)
-    @head.next = Node.new
-    is next nil? if it is keep going
-
-    @head.next.data = "bah"
-    # @count += 1
-    # current = @head
-    # while current.next != nil
-    #   current = current.next
-    # end
-    # current.next = Node.new(data)
+  def append_beat(*data)
+    node = @head
+    while node.next != nil
+      node = node.next
+    end
+    data.each do |beat|
+      node.next = Node.new(beat)
+      node = node.next
+    end
   end
 
-  def prepend_beat
-    count += 1
-    if head.nil?
-      @head = node
-      @tail = node
+  def prepend_beat(*data)
+    node = @head
+    if node.nil?
+      node = data
     else
-      @tail.next = node
-      @tail = node
+      node.next = @head
+      data.each do |beat|
+        @head = Node.new(beat)
+      end
     end
   end
 
@@ -67,16 +64,19 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
     # includes? gives back true or false whether the supplied value is in the list
   end
 
-  def count_number_of_beats_in_list
-    # count the number of elements in the list
-    total_beats = text.count
-    puts total_beats
+  def count_beats
+    count = 0
+    current = @head
+    while current
+      count += 1
+      current = current(node.next)
+    end
+    count
   end
 
-  def play_the_beats
-    `say -r 500 -v Boing "ding, dah, oom, oom"` # where ding string is manipulated text
-    count = @input_music.size
-    puts "Played #{count} sounds from `#{@input_music}`"
+  def play_beats
+    `say -r 500 -v Boing #{@input_music}` # where ding string is manipulated text
+    puts "Played #{count_beats} sounds from `#{@input_music}`"
   end
 
 end
