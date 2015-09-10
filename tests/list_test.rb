@@ -100,8 +100,11 @@ class ListTest < Minitest::Test
     assert_equal "five", list.head.data
   end
 
-  def test_remove_beat_from_end_of_list
-    skip
+  def test_remove_one_beat_from_end_of_list
+    list = List.new
+    list.convert_input_music_to_linked_list(["one", "two", "three"])
+    list.pop_beat
+    assert_equal "three", list.head.next.next.data
   end
 
   def test_remove_multiple_beats_from_end_of_list
