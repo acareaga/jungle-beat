@@ -1,5 +1,4 @@
 require_relative 'list'
 
-input_music = ARGV[0]
-list = List.new(input_music).play_beats
-list.convert_input_music_to_linked_list
+input_file = ARGV[0]
+List.new(input_file).play_beats

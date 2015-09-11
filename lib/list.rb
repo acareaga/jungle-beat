@@ -6,20 +6,13 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
   attr_accessor :head, :tail, :data
 
   def initialize(input_music=nil)
-    @head = Node.new
+    @head = Node.new(data)
     @tail = tail
+    @input_file_name = input_music
     if input_music == nil
     else
       @input_music = File.open(input_music).read.split(" ")
     end
-  end
-
-  def tail
-    node = @head
-    while node.next != nil
-      node = node.next
-    end
-    node
   end
 
   def convert_input_music_to_linked_list(input_music=@input_music)
@@ -30,6 +23,14 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
        node = node.next
      end
      @head
+  end
+
+  def tail
+    node = @head
+    while node.next != nil
+      node = node.next
+    end
+    node
   end
 
   def append_beat(*data)
@@ -93,12 +94,12 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
     all
   end
 
-  def include?(data)
+  def include?(word)
     node = @head
-    while (node.value != data) || (node.value == nil)
+    until node.data == word || node.next == nil
       node = node.next
     end
-    node.data == data
+    node.data == word
   end
 
   def find(*position)
@@ -121,23 +122,23 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
   end
 
   def count_beats
-    count = 0
+    count = 1
     node = @head
     while node.next != nil
+      node = node.next
       count += 1
-      node = node(node.next)
     end
     count
   end
 
-  def play_beats # Need to fix input_music file name
+  def play_beats
     `say -r 500 -v Boing "#{@input_music}"`
-    puts "Played #{@input_music.size} sounds from `#{@input_music}`"
+    puts "Played #{@input_music.size} sounds from `#{@input_file_name}`"
   end
 
   def play
-    `say -r 500 -v Boing "#{@output_music}"`
-    output_music.size # Need to add variable and carry through methods
+    `say -r 500 -v Boing "#{output_music}"`
+    count_beats
   end
 
 end
