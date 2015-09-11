@@ -3,7 +3,7 @@ require 'pry'
 
 class List # ruby ./lib/jungle_beats.rb beats.txt
 
-  attr_accessor :head, :tail, :data
+  attr_accessor :head, :tail, :data, :position
 
   def initialize(input_music=nil)
     @head = Node.new(data)
@@ -102,21 +102,22 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
     node.data == word
   end
 
-  def find(*position)
+  def find(position)
     node = @head
-    counter = 0
+    counter = 1
     while position != counter
-      node = node.next
       counter += 1
+      node = node.next
     end
-    node.value
+    node.data
   end
 
   def all
     all_nodes = []
     node = @head
-    until node.next == nil
+    while node != nil
       all_nodes << node.data
+      node = node.next
     end
     all_nodes
   end
@@ -137,8 +138,16 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
   end
 
   def play
-    `say -r 500 -v Boing "#{output_music}"`
+    `say -r 500 -v Boing "#{all}"`
     count_beats
   end
 
 end
+
+list = List.new
+list.convert_input_music_to_linked_list(["bee"])
+list.append_beat("bah")
+list.append_beat("dee")
+list.append_beat("dum")
+list.play
+list.all

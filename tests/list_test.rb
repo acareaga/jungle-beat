@@ -166,6 +166,15 @@ class ListTest < Minitest::Test
     # inserting elements at a position beyond the length of the list
   end
 
+  def test_find_beat_in_list_by_position
+    list = List.new
+    list.convert_input_music_to_linked_list(["bee"])
+    list.append_beat("bah")
+    list.append_beat("dee")
+    list.append_beat("dum")
+    assert_equal "dee", list.find(3)
+  end
+
   def test_check_if_list_includes_beat
     list = List.new
     list.convert_input_music_to_linked_list(['bee'])
@@ -182,6 +191,21 @@ class ListTest < Minitest::Test
     list.append_beat("dee")
     list.append_beat("dum")
     assert_equal false, list.include?("zip")
+  end
+
+  def test_if_all_nodes_print
+    list = List.new
+    list.convert_input_music_to_linked_list(['bee'])
+    list.append_beat("bah")
+    list.append_beat("dee")
+    assert_equal ["bee", "bah", "dee"], list.all
+  end
+
+  def test_count_number_of_beats_in_list
+    list = List.new
+    list.convert_input_music_to_linked_list(["bee"])
+    list.append_beat("bah")
+    assert_equal 2, list.count_beats
   end
 
   def test_count_number_of_beats_in_list
