@@ -1,12 +1,11 @@
 require_relative 'node'
-require 'pry'
 
-class List # ruby ./lib/jungle_beats.rb beats.txt
+class List
 
   attr_accessor :head, :tail, :data, :position
 
   def initialize(input_music=nil)
-    @head = Node.new(data)
+    @head = Node.new
     @tail = tail
     @input_file_name = input_music
     if input_music == nil
@@ -78,14 +77,14 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
 
   def insert_beat_in_list(position, data)
     node = @head
-    counter = 0
+    counter = 1
     if node.next.nil?
       append_beat(data)
     else
       while position != counter
         previous = node
-        node = node.next
         counter += 1
+        node = node.next
       end
       new_node = Node.new(data)
       previous.next = new_node
@@ -94,12 +93,12 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
     all
   end
 
-  def include?(word)
+  def include?(beat)
     node = @head
-    until node.data == word || node.next == nil
+    until (node.data == beat) || (node.next == nil)
       node = node.next
     end
-    node.data == word
+    node.data == beat
   end
 
   def find(position)
@@ -132,22 +131,14 @@ class List # ruby ./lib/jungle_beats.rb beats.txt
     count
   end
 
-  def play_beats
+  def play_input_file
     `say -r 500 -v Boing "#{@input_music}"`
     puts "Played #{@input_music.size} sounds from `#{@input_file_name}`"
   end
 
-  def play
+  def play_list
     `say -r 500 -v Boing "#{all}"`
     count_beats
   end
 
 end
-
-list = List.new
-list.convert_input_music_to_linked_list(["bee"])
-list.append_beat("bah")
-list.append_beat("dee")
-list.append_beat("dum")
-list.play
-list.all

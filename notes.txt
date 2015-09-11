@@ -1,5 +1,7 @@
 Due Friday 9/11
 
+# ruby ./lib/jungle_beats.rb beats.txt
+
 ---REQUIREMENTS---
 
 Make sure that your code is well tested for both expected cases and edge cases.
