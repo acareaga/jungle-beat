@@ -3,6 +3,14 @@ layout: page
 title: Jungle Beat
 ---
 
+Scores:
+* Functional Expectations - 3
+* Test-Driven Development - 3
+* Encapsulation / Breaking Logic into Components - 3
+* Fundamental Ruby & Style - 3
+* Looping *or* Recursion - 3
+
+
 https://github.com/turingschool/curriculum/blob/master/source/projects/jungle_beat.markdown
 
 ## Before You Begin
